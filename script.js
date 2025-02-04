@@ -30,13 +30,25 @@ addBookToLibrary("Moby Dick", "Herman Melville", 230, "unread");
 
 console.log("myLibrary:", myLibrary);
 
-
 function displayBooks() {
+    const cards = document.querySelector("#cards");
+    cards.innerHTML = "";
 
-    // for(let i = 0; i < myLibrary.length; i++){
-    //     return myLibrary[i];
-    // }
-    return myLibrary.map(item => item.title)
+    for(let i = 0; i <= myLibrary.length; i++){
+        const bookCard = document.createElement("div");
+        bookCard.textContent = `${myLibrary[i].title}, ${myLibrary[i].author} , ${myLibrary[i].num_pages} pages, ${myLibrary[i].status}`
+        cards.appendChild(bookCard);
+    }
+
+    bookCard.setAttribute("style","padding: 20px; background-color: light-green, margin: 10px");
+    console.log(i)
+    // return myLibrary.map(item => item.title)
 }
 
-console.log("Books in Library:", displayBooks())
+console.log("\nLIBRARY BOOKS:", displayBooks())
+
+// button to add new book
+
+document.getElementById("addBook").addEventListener('click', () => {
+    document.getElementById("modal-form").style.display = "block";
+});

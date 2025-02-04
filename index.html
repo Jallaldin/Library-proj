@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <h1>The Great Collection</h1>
-    <div class="cards">
-        
+    <div id="cards"></div>
+    <button id="addBook">New Book</button>
+
+    <div class="modal-form" id="modal-form">
+        <form action="" class="form-container">
+            <input type="text" id="title" placeholder="Title" />
+            <input type="text" id="author" placeholder="Author" />
+            <input type="text" id="pages" placeholder="Pages" />
+            <input type="checkbox" id="readstatus" name="readstatus" />
+            <label for="readstatus">Have you read this book before?</label>
+            <button type="submit" id="submit">Submit</button>
+        </form>
     </div>
-    
-</body>
-<script src="script.js"></script>
+
+  </body>
+  <script src="script.js"></script>
 </html>
