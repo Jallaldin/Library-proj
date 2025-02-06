@@ -8,20 +8,26 @@
   </head>
   <body>
     <h1>The Great Collection</h1>
-    <div id="cards"></div>
-    <button id="addBook">New Book</button>
+    <div id="cards">
+      <!-- book cards from myLibrary arr -->
+    </div>
+    <button id="addNewBook">New Book</button>
 
-    <div class="modal-form" id="modal-form">
-        <form action="" class="form-container">
+    <div id="modal" class="modal">
+        <form action="" id="form-container">
+            <button type="button" id="closeModal">X</button>
+            <div>
             <input type="text" id="title" placeholder="Title" />
             <input type="text" id="author" placeholder="Author" />
-            <input type="text" id="pages" placeholder="Pages" />
+            <input type="number" id="pages" placeholder="No.Pages" />
             <input type="checkbox" id="readstatus" name="readstatus" />
             <label for="readstatus">Have you read this book before?</label>
-            <button type="submit" id="submit">Submit</button>
+          </div>
+            <button type="submit" id="submitBook">Submit</button>
+          
         </form>
     </div>
-
-  </body>
+    
   <script src="script.js"></script>
+  </body>
 </html>
