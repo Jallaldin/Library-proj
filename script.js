@@ -19,7 +19,9 @@ const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "unread");
 console.log("Hobbit Info: ", theHobbit.info());
 
 function addBookToLibrary(title, author, num_pages, status){
+    if (title !== "" || author !== "" || num_pages !== "" || status !== ""){
     return myLibrary.push(new Book(title,author,num_pages, status));
+    }
 
 }
 
@@ -41,9 +43,16 @@ function displayBooks() {
         // data attribute relating to book index in library
         bookCard.setAttribute('data-index', i);
         cards.appendChild(bookCard);
-    }
+        //delete card button
+        const deleteBookBtn = document.createElement('button');
+        deleteBookBtn.textContent = "Delete Book";
+        bookCard.appendChild(deleteBookBtn); // is cards declared globally?
 
-    // bookCard.setAttribute("style","padding: 20px; background-color: light-green, margin: 10px");
+        deleteBookBtn.addEventListener('click', (e) => {
+            console.log("Delete button clicked");
+            deleteBook();
+});
+    }
     // return myLibrary.map(item => item.title)
 }
 
@@ -82,23 +91,21 @@ submitButton.addEventListener('click', () => {
 
 // use Event:preventDefault() to prevent the form from submitting and refreshing the page
 const form = document.getElementById('form-container');
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log("Form submitted, preventing default")
+    form.reset();   
+    displayBooks();
 })
 
-// delete button for each book in myLibrary
-const cards = document.querySelector("#cards");
-const bookCard = document.createElement("div");
-const deleteCard = document.createElement("button");
+// delete book from array and display
 
-deleteCard.textContent = "X";
-
-bookCard.appendChild(deleteCard);
-cards.appendChild(bookCard);
-
-deleteCard.addEventListener('click', () => {
-    console.log("Delete button clicked");
-    bookCard.remove();
+function deleteBook(){
     
+    console.log("Delete button clicked");
+    const index = this.parentElement.getAttribute('data-index'); // error: this is not defined globally
+    console.log("Index:", index);
+    myLibrary.splice(index, 1);
+    this.parentElement.remove();
+    displayBooks();
+}
