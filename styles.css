@@ -10,11 +10,13 @@ body {
 }
 
 #cards {
-  width: 300px;
+  width: 400px;
   margin: 20px;
   background-color: lightgreen;
   border-radius: 5px;
   padding: 10px;
+  height: 400px;
+  overflow-y:auto;
 }
 
 button {
@@ -25,18 +27,19 @@ button {
   margin: 20px;
 }
 
-.modal-form{
+.modal{
     display: none;
     position: fixed;
-
 }
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    border: 1px solid green;
-    border-radius: 5px;
-    padding: 20px;
+
+.modal {
+  width: 500px;
+  height: 300px;
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  background-color: "blue";
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
 }

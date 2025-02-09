@@ -56,36 +56,50 @@ function displayBooks() {
         //delete card button
         const deleteBookBtn = document.createElement('button');
         deleteBookBtn.textContent = "Delete Book";
-        bookCard.appendChild(deleteBookBtn); // is cards declared globally?
+        bookCard.appendChild(deleteBookBtn); // cards declared globally?
 
-        deleteBookBtn.addEventListener('click', (e) => {
+        deleteBookBtn.addEventListener('click', () => {
             console.log("Delete button clicked");
             console.log("Book Index:", bookCard.getAttribute('data-index'));
             deleteBook(bookCard.getAttribute('data-index'));
-});
+        });
+
+        // change read status for each book
+        const readStatusBtn = document.createElement('button');
+        readStatusBtn.textContent = 'Change';
+        bookCard.appendChild(readStatusBtn);
+        readStatusBtn.addEventListener('click', () => {
+            console.log("Change Read Status button clicked");
+            Book.prototype.changeReadStatus(bookCard.getAttribute('data-index'));
+        })
     // delete book function
-    function deleteBook(index){
-        myLibrary.splice(index, 1);
-        displayBooks();
-        }
+        function deleteBook(index){
+            myLibrary.splice(index, 1);
+            displayBooks();
+            }
+    // change read status function
     // return myLibrary.map(item => item.title)
     }
+}
+
+Book.prototype.changeReadStatus = function(index){
+    if (myLibrary[index].status === "read"){
+        myLibrary[index].status = "unread";
+    } else {
+        myLibrary[index].status = "read";
+    }
+    displayBooks();
 }
 
 console.log("LIBRARY BOOKS:", displayBooks())
 
 // button to add new book
-
 document.getElementById('addNewBook').addEventListener('click', () => {
-    console.log("New Book button clicked");
-    const modal = document.getElementById('modal');
-    if (modal) {
-        modal.style.display = "block"; // Ensure modal exists before accessing it
-    } else {
-        console.error("Modal not found!");
-    }
+    console.log("Add Book button clicked");
+    document.getElementById('modal').style.display = "block";
 });
 
+// close form
 document.getElementById('closeModal').addEventListener('click', () => {
     document.getElementById('modal').style.display = "none";
 });
