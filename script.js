@@ -43,6 +43,16 @@ function displayBooks() {
         // data attribute relating to book index in library
         bookCard.setAttribute('data-index', i);
         cards.appendChild(bookCard);
+        //styling bookCard
+        bookCard.setAttribute("style","border: 1px solid black")
+        // change color on hover
+        bookCard.addEventListener('mouseover', () => {
+            bookCard.style.backgroundColor = "lightblue";
+        });
+
+        bookCard.addEventListener('mouseout', () => {
+            bookCard.style.backgroundColor = "lightgreen";
+        });
         //delete card button
         const deleteBookBtn = document.createElement('button');
         deleteBookBtn.textContent = "Delete Book";
@@ -50,10 +60,16 @@ function displayBooks() {
 
         deleteBookBtn.addEventListener('click', (e) => {
             console.log("Delete button clicked");
-            deleteBook();
+            console.log("Book Index:", bookCard.getAttribute('data-index'));
+            deleteBook(bookCard.getAttribute('data-index'));
 });
-    }
+    // delete book function
+    function deleteBook(index){
+        myLibrary.splice(index, 1);
+        displayBooks();
+        }
     // return myLibrary.map(item => item.title)
+    }
 }
 
 console.log("LIBRARY BOOKS:", displayBooks())
@@ -96,16 +112,4 @@ form.addEventListener('submit', (e) => {
     console.log("Form submitted, preventing default")
     form.reset();   
     displayBooks();
-})
-
-// delete book from array and display
-
-function deleteBook(){
-    
-    console.log("Delete button clicked");
-    const index = this.parentElement.getAttribute('data-index'); // error: this is not defined globally
-    console.log("Index:", index);
-    myLibrary.splice(index, 1);
-    this.parentElement.remove();
-    displayBooks();
-}
+});
